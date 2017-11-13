@@ -38,7 +38,6 @@ public class TicketMachine {
     }
     
     public void emitir() throws SaldoInsuficienteException{
-        boolean emitir = false;
         if(this.qtdBilhetes > 0 ){
             if(this.saldo >= bilhete.getValor())
                 this.saldo = this.saldo - bilhete.getValor();
@@ -119,8 +118,14 @@ public class TicketMachine {
         return bilhete.getValor();
     }
     
-    public Iterator<Integer> getTroco() {
-        return null;
+    public Iterator<PapelMoeda> getTroco() {
+        Iterator<PapelMoeda> notaIterator = new Troco(saldo).getIterator();
+    	
+    	while (notaIterator.hasNext()) {
+    		PapelMoeda nota = (PapelMoeda)notaIterator.next();
+    		System.out.println("valor: "+ nota.getValor() +" | quantidade: " + nota.getQuantidade());
+    	}
+        return notaIterator;
     }
 
     public String imprimir() throws SaldoInsuficienteException {
