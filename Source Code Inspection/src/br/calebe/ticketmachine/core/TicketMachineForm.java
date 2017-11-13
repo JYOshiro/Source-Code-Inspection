@@ -12,7 +12,7 @@ public class TicketMachineForm extends javax.swing.JFrame {
     public PapelMoeda papel5 = new PapelMoeda(5,20);
     public PapelMoeda papel10 = new PapelMoeda(10,10);
     public PapelMoeda pape20 = new PapelMoeda(20,5);
-    public TicketMachine machine = new TicketMachine(400); 
+    public TicketMachine machine = new TicketMachine(400,10); 
     /**
      * Creates new form TicketMachineForm
      */
