@@ -13,6 +13,7 @@ public class TicketMachine {
     protected int valor;
     protected int saldo;
     protected int[] papelMoeda = {2, 5, 10, 20, 50, 100};
+    protected Bilhete bilhete = new Bilhete(10);
     protected int qtdBilhetes;
 
     public TicketMachine(int valor, int qtdBilhetes) {
@@ -36,7 +37,14 @@ public class TicketMachine {
     
     public void emitir() throws SaldoInsuficienteException{
         boolean emitir = false;
-        
+        if(this.qtdBilhetes > 0 ){
+            if(this.saldo >= bilhete.getValor())
+                this.saldo = this.saldo - bilhete.getValor();
+            else
+                throw new SaldoInsuficienteException();
+        }else{
+            
+        }
     }
     
     public void emitirTroco(){
@@ -45,6 +53,10 @@ public class TicketMachine {
 
     public int getSaldo() {
         return saldo;
+    }
+    
+    public int getVlrBilhete(){
+        return bilhete.getValor();
     }
     
     public Iterator<Integer> getTroco() {
