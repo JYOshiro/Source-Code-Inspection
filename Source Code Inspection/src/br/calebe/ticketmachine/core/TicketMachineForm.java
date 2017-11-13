@@ -6,16 +6,17 @@ package br.calebe.ticketmachine.core;
         
 import br.calebe.ticketmachine.exception.PapelMoedaInvalidaException;
 import br.calebe.ticketmachine.exception.SaldoInsuficienteException;
+import br.calebe.ticketmachine.exception.SemTrocoException;
 import java.awt.Toolkit;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 public class TicketMachineForm extends javax.swing.JFrame {
 
-    public PapelMoeda papel2 = new PapelMoeda(2,50);
-    public PapelMoeda papel5 = new PapelMoeda(5,20);
-    public PapelMoeda papel10 = new PapelMoeda(10,10);
-    public PapelMoeda pape20 = new PapelMoeda(20,5);
+    public PapelMoeda papel2 = new PapelMoeda(2,0);
+    public PapelMoeda papel5 = new PapelMoeda(5,0);
+    public PapelMoeda papel10 = new PapelMoeda(10,0);
+    public PapelMoeda pape20 = new PapelMoeda(20,0);
     public TicketMachine machine = new TicketMachine(400,10); 
     /**
      * Creates new form TicketMachineForm
@@ -127,10 +128,11 @@ public class TicketMachineForm extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -142,7 +144,11 @@ public class TicketMachineForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+       try{
+           boolean temtroco = machine.VerificaTroco(papel2, papel5, papel10, papel2, papel5, papel10);
+        }catch(SemTrocoException e){
+            this.setWarningMsg(e.getSemTroco());
+        }      
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
