@@ -13,16 +13,18 @@ public class TicketMachine {
     protected int valor;
     protected int saldo;
     protected int[] papelMoeda = {2, 5, 10, 20, 50, 100};
+    protected int qtdBilhetes;
 
-    public TicketMachine(int valor) {
+    public TicketMachine(int valor, int qtdBilhetes) {
         this.valor = valor;
         this.saldo = 0;
+        this.qtdBilhetes = qtdBilhetes;
     }
 
     public void inserir(int quantia) throws PapelMoedaInvalidaException {
         boolean achou = false;
         for (int i = 0; i < papelMoeda.length && !achou; i++) {
-            if (papelMoeda[1] == quantia) {
+            if (papelMoeda[i] == quantia) {
                 achou = true;
             }
         }
@@ -30,6 +32,15 @@ public class TicketMachine {
             throw new PapelMoedaInvalidaException();
         }
         this.saldo += quantia;
+    }
+    
+    public void emitir() throws SaldoInsuficienteException{
+        boolean emitir = false;
+        
+    }
+    
+    public void emitirTroco(){
+        
     }
 
     public int getSaldo() {
