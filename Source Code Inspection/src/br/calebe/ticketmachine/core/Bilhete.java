@@ -1,14 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.calebe.ticketmachine.core;
-
 /**
  *
  * @author Jessica Oshiro
  */
 public class Bilhete {
+    protected int valor;
     
+    public Bilhete(int valor) {
+        this.valor = valor;
+    }
+
+    public int getValor() {
+        return valor;
+    }
 }
