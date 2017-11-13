@@ -5,6 +5,7 @@
 package br.calebe.ticketmachine.core;
         
 import br.calebe.ticketmachine.exception.PapelMoedaInvalidaException;
+import br.calebe.ticketmachine.exception.SaldoInsuficienteException;
 
 public class TicketMachineForm extends javax.swing.JFrame {
 
@@ -166,7 +167,13 @@ public class TicketMachineForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        try{
+            machine.emitir();
+            showSaldo(machine.getSaldo());  
+            new BilheteImpresso(machine).setVisible(true);
+        }catch(SaldoInsuficienteException e){
+          System.out.print("Erro de emissão");
+        }       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
